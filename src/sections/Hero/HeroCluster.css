@@ -1,0 +1,44 @@
+.hero-cluster {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 60px rgb(var(--accent) / 0.18));
+}
+
+.hero-cluster svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.hero-cluster__ring {
+  transform-origin: center;
+  animation: hero-cluster-rotate 36s linear infinite;
+  transform-box: fill-box;
+}
+
+@keyframes hero-cluster-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cluster__ring {
+    animation: none;
+  }
+}
+
+/* light-mode toning — softer halo + slight opacity */
+:root:not(.dark) .hero-cluster {
+  opacity: 0.85;
+  filter: drop-shadow(0 0 40px rgb(var(--accent) / 0.1));
+}
+
+/* mobile: scale down */
+@media (max-width: 767px) {
+  .hero-cluster {
+    max-width: 280px;
+  }
+}

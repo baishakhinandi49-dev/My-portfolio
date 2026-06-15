@@ -1,0 +1,13 @@
+.theme-toggle__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  color: rgb(var(--fg) / 0.7);
+}
+
+.theme-toggle__icon--sun  { left: 0.45rem; }
+.theme-toggle__icon--moon { right: 0.45rem; }

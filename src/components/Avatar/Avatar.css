@@ -1,0 +1,153 @@
+.avatar {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  animation: fx-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ─── outer pulse glow ─── */
+.avatar__glow {
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(var(--accent) / 0.35) 0%,
+    rgb(var(--accent) / 0.1) 40%,
+    transparent 65%
+  );
+  animation: fx-pulse 4s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── rotating conic-gradient ring ─── */
+.avatar__ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgb(var(--accent)) 60deg,
+    transparent 180deg,
+    rgb(var(--accent-strong)) 240deg,
+    transparent 360deg
+  );
+  animation: fx-rotate 8s linear infinite;
+  -webkit-mask: radial-gradient(circle, transparent 70%, black 71%);
+  mask: radial-gradient(circle, transparent 70%, black 71%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.avatar__ring--reverse {
+  inset: -10px;
+  background: conic-gradient(
+    from 180deg,
+    transparent 0deg,
+    rgb(var(--accent) / 0.6) 90deg,
+    transparent 200deg,
+    rgb(var(--accent-strong) / 0.4) 280deg,
+    transparent 360deg
+  );
+  animation: fx-rotate 14s linear infinite reverse;
+  -webkit-mask: radial-gradient(circle, transparent 73%, black 74%);
+  mask: radial-gradient(circle, transparent 73%, black 74%);
+}
+
+/* ─── orbiting dots ─── */
+.avatar__orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.avatar__orbit--outer {
+  inset: -20px;
+  animation: fx-rotate 12s linear infinite;
+}
+
+.avatar__orbit--inner {
+  inset: -8px;
+  animation: fx-rotate 18s linear infinite reverse;
+}
+
+.avatar__dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-radius: 50%;
+  background: rgb(var(--accent));
+  box-shadow:
+    0 0 12px rgb(var(--accent) / 0.9),
+    0 0 24px rgb(var(--accent) / 0.5);
+}
+
+.avatar__dot--lg {
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+}
+
+.avatar__dot--sm {
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background: rgb(var(--accent-strong));
+  box-shadow:
+    0 0 10px rgb(var(--accent-strong) / 0.9),
+    0 0 20px rgb(var(--accent-strong) / 0.5);
+}
+
+/* ─── inner portrait surface ─── */
+.avatar__portrait {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.avatar__mark,
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.avatar__image {
+  object-fit: cover;
+}
+
+/* fx-rotate / fx-pulse / fx-float keyframes defined in index.css */
+
+/* ─── reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .avatar,
+  .avatar__ring,
+  .avatar__ring--reverse,
+  .avatar__orbit--outer,
+  .avatar__orbit--inner,
+  .avatar__glow {
+    animation: none;
+  }
+}
+
+/* ─── light-mode toning ─── */
+:root:not(.dark) .avatar__glow {
+  background: radial-gradient(
+    circle,
+    rgb(var(--accent) / 0.18) 0%,
+    rgb(var(--accent) / 0.05) 40%,
+    transparent 65%
+  );
+}
